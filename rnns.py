@@ -15,7 +15,7 @@ try:
   linear = tf.nn.rnn_cell.linear
 except:
   from tensorflow.contrib.rnn.python.ops import core_rnn_cell
-  linear = core_rnn_cell._Linear
+  linear = core_rnn_cell._linear
   #from tensorflow.python.ops import rnn_cell_impl
   #linear = rnn_cell_impl._linear
   #from tensorflow.python.ops.rnn_cell import _linear as linear
