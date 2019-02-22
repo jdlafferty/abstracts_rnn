@@ -1,0 +1,85 @@
+getting and saving the train, valid and test data...
+creating the vocabulary...
+('train length: ', 8502648)
+('vocab tokens: ', [(u' ', 1238867), (u'e', 816168), (u't', 615228), (u'i', 540678), (u'a', 536183), (u'o', 500037), (u'n', 487713), (u's', 447862), (u'r', 430322), (u'l', 283206), (u'h', 257108), (u'c', 257001), (u'd', 225472), (u'm', 194584), (u'u', 178875), (u'p', 172991), (u'f', 157606), (u'g', 122461), (u'y', 96314), (u'b', 91769), (u'w', 76269), (u'v', 72337), (u'.', 59081), (u'$', 58476), (u',', 52781), (u'-', 40225), (u'\\', 39856), (u'{', 28689), (u'}', 28687), (u'x', 28648), (u'k', 23841), (u'T', 18830), (u'q', 16380), (u')', 15206), (u'(', 15040), (u'W', 14530), (u'1', 12971), (u'S', 12831), (u'0', 12575), (u'z', 11894), (u'I', 11071), (u'2', 10445), (u'A', 10328), (u'M', 10085), (u'C', 9994), (u'_', 9340), (u'H', 7374), (u'F', 7130), (u'L', 6995), (u'B', 6941), (u'P', 6750), (u'D', 6746), (u'^', 6626), (u'R', 6562), (u'G', 6547), (u'N', 5697), (u'3', 5579), (u'O', 5361), (u'E', 4954), (u'j', 4640), (u'5', 4468), (u"'", 4220), (u'4', 3853), (u'K', 3429), (u'V', 3013), (u'/', 2765), (u'=', 2608), (u'U', 2607), (u'6', 2456), (u':', 2443), (u'~', 2254), (u'7', 2202), (u'8', 2201), (u'9', 2187), (u'`', 1909), (u'X', 1898), (u'+', 1869), (u';', 1503), (u'J', 1438), (u'Q', 1415), (u'\xc3', 1377), (u'\xc2', 1225), (u'[', 1001), (u']', 999), (u'Z', 985), (u'Y', 743), (u'%', 712), (u'<', 699), (u'"', 686), (u'|', 598), (u'*', 552), (u'>', 530), (u'\x90', 416), (u'?', 243), (u'\x91', 196), (u'!', 157), (u'\xa2', 121)])
+('vocab tokens length: ', 97)
+('official vocab length: ', 100)
+ [*] save ./data/abstracts-small/vocab.pkl
+preparing final run data...
+ [*] save ./data/abstracts-small/X_train.pkl
+ [*] save ./data/abstracts-small/Y_train.pkl
+ [*] save ./data/abstracts-small/X_valid.pkl
+ [*] save ./data/abstracts-small/Y_valid.pkl
+ [*] save ./data/abstracts-small/X_test.pkl
+ [*] save ./data/abstracts-small/Y_test.pkl
+vocabulary size: 100
+number of training documents: 109072.0
+number of validation documents: 11616.0
+number of testing documents: 11616.0
+2019-02-22 11:39:22.400956: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-22 11:39:24.404068: E tensorflow/stream_executor/cuda/cuda_driver.cc:300] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2019-02-22 11:39:24.404168: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: abstract-rnn-gpu
+2019-02-22 11:39:24.404182: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: abstract-rnn-gpu
+2019-02-22 11:39:24.404279: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 410.72.0
+2019-02-22 11:39:24.404345: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 410.72.0
+2019-02-22 11:39:24.404371: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 410.72.0
+WARNING:tensorflow:At least two cells provided to MultiRNNCell are the same object and will share weights.
+ [*] Loading checkpoints...
+checkpoints/abstracts-small/plainrnn/generator_embed_dim100__n_hidden500__n_layers2__init_lr0.001__decay_step20000__dropout0.5
+ [!] Load failed...
+Starting training ...
+Step: [1000/109100] time: 7704.9570, lr: 0.00100000, loss: 326.89880371
+Epoch: [   1/ 100] (Step: [1000/109100]) time: 7704.9588, perplexity: 7.97696567
+ [*] Saving checkpoints...
+validation perplexity: 4.27398406
+test perplexity: 4.27398406
+ [*] load ./data/abstracts-small/vocab.pkl
+ [*] load ./data/abstracts-small/X_train.pkl
+ [*] load ./data/abstracts-small/Y_train.pkl
+ [*] load ./data/abstracts-small/X_valid.pkl
+ [*] load ./data/abstracts-small/Y_valid.pkl
+ [*] load ./data/abstracts-small/X_test.pkl
+ [*] load ./data/abstracts-small/Y_test.pkl
+vocabulary size: 100
+number of training documents: 109072.0
+number of validation documents: 11616.0
+number of testing documents: 11616.0
+2019-02-22 14:37:50.726051: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-22 14:37:52.665328: E tensorflow/stream_executor/cuda/cuda_driver.cc:300] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2019-02-22 14:37:52.665408: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: abstract-rnn-gpu
+2019-02-22 14:37:52.665417: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: abstract-rnn-gpu
+2019-02-22 14:37:52.665477: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 410.72.0
+2019-02-22 14:37:52.665510: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 410.72.0
+2019-02-22 14:37:52.665517: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 410.72.0
+WARNING:tensorflow:At least two cells provided to MultiRNNCell are the same object and will share weights.
+ [*] Loading checkpoints...
+checkpoints/abstracts-small/plainrnn/generator_embed_dim100__n_hidden500__n_layers2__init_lr0.001__decay_step20000__dropout0.5
+ [*] Load SUCCESS
+ [*] load ./data/abstracts-small/vocab.pkl
+ [*] load ./data/abstracts-small/X_train.pkl
+ [*] load ./data/abstracts-small/Y_train.pkl
+ [*] load ./data/abstracts-small/X_valid.pkl
+ [*] load ./data/abstracts-small/Y_valid.pkl
+ [*] load ./data/abstracts-small/X_test.pkl
+ [*] load ./data/abstracts-small/Y_test.pkl
+vocabulary size: 100
+number of training documents: 109072.0
+number of validation documents: 11616.0
+number of testing documents: 11616.0
+2019-02-22 16:41:07.841792: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-02-22 16:41:09.487518: E tensorflow/stream_executor/cuda/cuda_driver.cc:300] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2019-02-22 16:41:09.487667: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: abstract-rnn-gpu
+2019-02-22 16:41:09.487730: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: abstract-rnn-gpu
+2019-02-22 16:41:09.487838: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 410.72.0
+2019-02-22 16:41:09.487956: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 410.72.0
+2019-02-22 16:41:09.488021: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 410.72.0
+WARNING:tensorflow:At least two cells provided to MultiRNNCell are the same object and will share weights.
+ [*] Loading checkpoints...
+checkpoints/abstracts-small/plainrnn/generator_embed_dim100__n_hidden500__n_layers2__init_lr0.001__decay_step20000__dropout0.5
+ [*] Load SUCCESS
+Starting training ...
+Step: [2000/109100] time: 7971.0616, lr: 0.00100000, loss: 314.68508911
+Epoch: [   1/ 100] (Step: [2000/109100]) time: 7971.0634, perplexity: 4.80567466
+ [*] Saving checkpoints...
+validation perplexity: 3.72284958
+test perplexity: 3.72284958
