@@ -14,8 +14,10 @@ from tensorflow.python.layers.core import Dense
 try:
   linear = tf.nn.rnn_cell.linear
 except:
-  from tensorflow.python.ops import rnn_cell_impl
-  linear = rnn_cell_impl._linear
+  from tensorflow.contrib.rnn.python.ops import core_rnn_cell
+  linear = core_rnn_cell._Linear
+  #from tensorflow.python.ops import rnn_cell_impl
+  #linear = rnn_cell_impl._linear
   #from tensorflow.python.ops.rnn_cell import _linear as linear
 
 class RNNs:

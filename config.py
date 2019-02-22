@@ -1,6 +1,6 @@
 class Config:
-  dataset="abstracts"
-  raw_data_root = "../../4a__abstract_txt/%s.json" % dataset # location of raw data
+  dataset="abstracts-small"
+  raw_data_root = "data/%s.json" % dataset # location of raw data
 
   data_path = "./data/%s" % dataset # location for storing pkl
 
