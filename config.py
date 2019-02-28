@@ -1,10 +1,10 @@
 class Config:
-  dataset="abstracts-small"
+  dataset="abstracts"
   raw_data_root = "data/%s.json" % dataset # location of raw data
 
   data_path = "./data/%s" % dataset # location for storing pkl
 
-  model_type = "plainrnn"
+  model_type = "rnn"
   checkpoint_dir="checkpoints/%s/%s" % (dataset, model_type)
 
   decay_rate=0.95

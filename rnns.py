@@ -4,6 +4,7 @@ import util
 import time
 import os, sys
 import math
+import datetime
 
 from tensorflow.python.ops.rnn_cell import MultiRNNCell
 from tensorflow.python.ops.rnn_cell import GRUCell
@@ -279,6 +280,8 @@ class RNNs:
           sys.stdout.flush()
 
       # minibatch complete
+      dt = datetime.datetime.now()
+      print("%s" % dt.strftime("%B %d, %Y: %H:%M:%S"))
       print("Epoch: [%4d/%4d] (Step: [%4d/%4d]) time: %4.4f, perplexity: %.8f" \
         % (epoch+1, self.total_epoch, step, total_steps, time.time() - start_time, np.exp(costs/steps_within)))
       if epoch %5 ==0:
