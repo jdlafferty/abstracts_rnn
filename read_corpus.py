@@ -52,11 +52,15 @@ class Reader(object):
     for arxiv_id in obj:
       text = obj[arxiv_id]
       data.append(text)
-    permutation = list(np.random.choice(range(len(data)), len(data), replace=False))
+    #permutation = list(np.random.choice(range(len(data)), len(data), replace=False))
+    #n_train = int(len(data) * 0.9)
+    #train = list(np.array(data)[permutation])[:n_train]
+    #valid = list(np.array(data)[permutation])[n_train:]
+    #test = list(np.array(data)[permutation])[n_train:]
     n_train = int(len(data) * 0.9)
-    train = list(np.array(data)[permutation])[:n_train]
-    valid = list(np.array(data)[permutation])[n_train:]
-    test = list(np.array(data)[permutation])[n_train:]
+    train = data[:n_train]
+    valid = data[n_train:]
+    test = data[n_train:]
     return train, valid, test
 
   # def _clean_up_sent(self, sent): # sent: a list of words for one sentence
