@@ -23,7 +23,7 @@ class Reader(object):
 
     #assume vocabulary is built in advance
     train_data_path = self.data_path+'/'+'X_train.pkl'
-    if os.path.exists(train_data):
+    if os.path.exists(train_data_path):
       print("loading the vocabulary..."); sys.stdout.flush()
       self.vocab, self.vocab_size = load_pkl(self.vocab_path)
       self._load()

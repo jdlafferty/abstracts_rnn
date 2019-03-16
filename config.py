@@ -2,7 +2,7 @@ class Config:
   dataset="astro-ph"
   vocab_path = "data/arxiv/vocab.pkl" # common vocabulary
   raw_data_root = "data/arxiv/%s.json" % dataset # location of raw data
-  data_path = "./data/%s" % dataset # location for storing pkl
+  data_path = "./data/arxiv/%s" % dataset # location for storing pkl
 
   model_type = "rnn"
   checkpoint_dir="checkpoints/%s/%s" % (dataset, model_type)
