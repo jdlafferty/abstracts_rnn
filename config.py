@@ -1,6 +1,6 @@
 class Config:
-  dataset="abstracts"
-  raw_data_root = "data/%s.json" % dataset # location of raw data
+  dataset="astro-ph"
+  raw_data_root = "data/arxiv/%s.json" % dataset # location of raw data
 
   data_path = "./data/%s" % dataset # location for storing pkl
 
