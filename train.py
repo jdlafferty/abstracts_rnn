@@ -12,10 +12,11 @@ np.random.seed(54)
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_load_only", type=int, default=False)
+parser.add_argument("--dataset", type=str, default="")
 args = parser.parse_args()
 
 def main(_):
-  config = Config()
+  config = Config(args.dataset)
   reader = Reader(config)
 
   with tf.Session() as sess:
