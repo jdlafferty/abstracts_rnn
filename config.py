@@ -1,7 +1,7 @@
 class Config:
   dataset="astro-ph"
+  vocab_path = "data/arxiv/vocab.pkl" # common vocabulary
   raw_data_root = "data/arxiv/%s.json" % dataset # location of raw data
-
   data_path = "./data/%s" % dataset # location for storing pkl
 
   model_type = "rnn"
@@ -16,7 +16,7 @@ class Config:
   dropout=0.5 # this is keep-probability
   learning_rate=0.001
   # con_vocab_size=10000 #including <unk>
-  vocab_size=100 #including <sos>, <eos> and <unk>
+  # vocab_size=100 #including <sos>, <eos> and <unk>
   n_layers=2
   max_grad_norm = 1.0
   total_epoch=100

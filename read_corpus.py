@@ -15,22 +15,25 @@ np.random.seed(54)
 
 class Reader(object):
   def __init__(self, config):
-    self.vocab_size = config.vocab_size
+    #self.vocab_size = config.vocab_size
     self.data_path = data_path = config.data_path
     if not os.path.exists(self.data_path): os.mkdir(self.data_path)
     self.raw_data_root = config.raw_data_root
-    self.vocab_path = vocab_path = os.path.join(data_path, "vocab.pkl")
+    self.vocab_path = config.vocab_path
 
-    #use train data to build vocabulary
-    if os.path.exists(vocab_path):
+    #assume vocabulary is built in advance
+    train_data_path = self.data_path+'/'+'X_train.pkl'
+    if os.path.exists(train_data):
+      print("loading the vocabulary..."); sys.stdout.flush()
+      self.vocab, self.vocab_size = load_pkl(self.vocab_path)
       self._load()
     else:
       print("getting and saving the train, valid and test data...")
       sys.stdout.flush()
       train_objs, valid_objs, test_objs = self._read_and_get_objdata(self.raw_data_root)
 
-      print("creating the vocabulary..."); sys.stdout.flush()
-      self._build_vocab(train_objs, vocab_path)
+      print("loading the vocabulary..."); sys.stdout.flush()
+      self.vocab, self.vocab_size = load_pkl(self.vocab_path)
       print("preparing final run data..."); sys.stdout.flush()
       self.X_train, self.Y_train = self._obj_to_data(train_objs, data_type='train')
       self.X_valid, self.Y_valid = self._obj_to_data(valid_objs, data_type='valid')
@@ -122,7 +125,7 @@ class Reader(object):
     return X, Y
 
   def _load(self):
-    self.vocab, self.vocab_size = load_pkl(self.vocab_path)
+    print("loading the pickled data..."); sys.stdout.flush()
     self.X_train = load_pkl(self.data_path+'/'+'X_train'+'.pkl')
     self.Y_train = load_pkl(self.data_path+'/'+'Y_train'+'.pkl')
     self.X_valid = load_pkl(self.data_path+'/'+'X_valid'+'.pkl')

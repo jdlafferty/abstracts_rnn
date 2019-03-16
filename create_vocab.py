@@ -9,7 +9,7 @@ files = ["hep-th", "math-AG", "astro-ph", "stat-ML"]
 charvoc = Counter()
 
 for file in files:
-   with open("/home/lafferty/abstracts_rnn/data/arxiv/%s.json" % file, 'r') as fp:
+   with open("./data/arxiv/%s.json" % file, 'r') as fp:
       abstract = json.load(fp)
       nabs = 0
       print("\n%s:" % file)
@@ -21,7 +21,7 @@ for file in files:
       print("processed %d abstracts" % nabs)
 
 
-vocab_words = [c[0] for c in charvoc.most_common() if c[1] > 100]
+vocab_words = [c[0] for c in charvoc.most_common() if c[1] > 10]
 print("\nvocab tokens: "),
 print(vocab_words)
 print("vocab length: %d" % len(vocab_words))
