@@ -5,7 +5,7 @@ class Config:
   data_path = "./data/arxiv/%s" % dataset # location for storing pkl
 
   model_type = "rnn"
-  checkpoint_dir="checkpoints/%s/%s" % (dataset, model_type)
+  checkpoint_dir="checkpoints/arxiv/%s/%s" % (dataset, model_type)
 
   decay_rate=0.95
   decay_step=20000
