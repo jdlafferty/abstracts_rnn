@@ -1,4 +1,5 @@
 class Config:
+
   def __init__(self, dataset, modelname):
     self.dataset = dataset
     self.modelname = modelname
@@ -26,3 +27,4 @@ class Config:
     self.print_topics=True
     self.generate_text=True
     self.cell_type = 'lstm'
+
