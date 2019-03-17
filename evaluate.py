@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import re
 
-from config_models import Config
+from config import Config
 from read_corpus import Reader
 from rnns import RNNs
 from copy import deepcopy
