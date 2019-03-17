@@ -1,13 +1,14 @@
 class Config:
-  def __init__(self, dataset):
+  def __init__(self, dataset, modelname):
     self.dataset = dataset
+    self.modelname = modelname
     #  dataset="astro-ph"
     self.vocab_path = "data/arxiv/vocab.pkl" # common vocabulary
     self.raw_data_root = "data/arxiv/%s.json" % self.dataset # location of raw data
     self.data_path = "./data/arxiv/%s" % self.dataset # location for storing pkl
 
     self.model_type = "rnn"
-    self.checkpoint_dir="checkpoints/arxiv/%s/%s" % (self.dataset, self.model_type)
+    self.checkpoint_dir="checkpoints/arxiv/%s/%s" % (self.modelname, self.model_type)
 
     self.decay_rate=0.95
     self.decay_step=20000

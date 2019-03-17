@@ -12,18 +12,19 @@ np.random.seed(54)
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_load_only", type=int, default=True)
+parser.add_argument("--dataset", type=str, default="")
+parser.add_argument("--modelname", type=str, default="")
 args = parser.parse_args()
 
 def main(_):
-  config = Config()
+  config = Config(args.dataset, args.modelname)
   reader = Reader(config)
   sess = tf.Session()
   model = RNNs(sess, config, reader)
 
   model.load(config.checkpoint_dir)
   test_pp = model.compute_perplexity(data_type="test", sess=model.sess)
-  print("test perplexity: %f" % test_pp)
+  print("Perplexity of model %s on data %s: %f" % (args.modelname, args.dataset, test_pp))
 
 
 if __name__ == '__main__':
