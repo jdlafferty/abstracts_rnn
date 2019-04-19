@@ -1,4 +1,5 @@
 import tensorflow as tf
+import pdb
 import numpy as np
 import util
 import time
@@ -294,10 +295,31 @@ class RNNs:
         print("test perplexity: %.8f" % (pp_test))
       sys.stdout.flush()
 
+  def compute_likelihood(self, sess, test_string):
+    print("computing likelihood ...")
+    test_seq = [self.reader.vocab[word_idx] for word_idx in test_string]
+    test_seq = np.insert(test_seq,0, self.reader.vocab['<sos>'])
+    #test_seq = np.insert(test_seq,len(test_seq), self.reader.vocab['<eos>'])
+
+    batch_size = 1
+    log_likelihood=0;
+    for i in range(0,len(test_seq) -1):
+        X = np.reshape(np.array([test_seq[i]]), [1, -1])
+        # assuming plainrnn
+        feed_dict={self._X: X,
+                  self.init_state_place: np.zeros([self.n_layers, 2, batch_size, self.n_hidden]),
+                  self.pkeep_placeholder: 1.0,
+                  self._seq_len: [i],
+                  self.batch_size: 1}
+        state, p_y_i = sess.run([self.final_state, self.p_y_i], feed_dict=feed_dict)
+        log_likelihood = log_likelihood + np.log(p_y_i.reshape([-1])[test_seq[i+1]])
+    return(log_likelihood)
+
 
   def generate_eq(self, sess):
     print("generating eqs...")
 
+    #pdb.set_trace()
     seq_start_list = ["<sos>"]*100 # ["<sos> \\", "<sos> {", "<sos> P"]
     for seq_start in seq_start_list:
       batch_size = 1

@@ -31,8 +31,15 @@ def main(_):
 
     #generate text...
     if config.generate_text:
-      model.generate_eq(model.sess)
-
+      test_string0 = "We trained a neural network."
+      test_string1 = "Fofo fofo fd ss dd ddfffsss."
+      test_string2 = "The meadow is very beautiful"
+      test_string3 = "We model the applicability "
+      print(model.compute_likelihood(model.sess, test_string0))
+      print(model.compute_likelihood(model.sess, test_string1))
+      print(model.compute_likelihood(model.sess, test_string2))
+      print(model.compute_likelihood(model.sess, test_string3))
+      #model.generate_eq(model.sess)
 
 if __name__ == '__main__':
 	tf.app.run()
