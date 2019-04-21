@@ -14,10 +14,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--model_load_only", type=int, default=False)
 parser.add_argument("--dataset", type=str, default="")
 parser.add_argument("--modelname", type=str, default="")
+parser.add_argument("--load_training_data", type=str, default=True)
 args = parser.parse_args()
 
 def main(_):
-  config = Config(args.dataset, args.modelname)
+  config = Config(args.dataset, args.modelname,args.load_training_data)
   reader = Reader(config)
 
   with tf.Session() as sess:
@@ -31,6 +32,7 @@ def main(_):
 
     #generate text...
     if config.generate_text:
+      model.generate_eq(model.sess)
       test_string0 = "We trained a neural network."
       test_string1 = "Fofo fofo fd ss dd ddfffsss."
       test_string2 = "The meadow is very beautiful"
@@ -39,7 +41,6 @@ def main(_):
       print(model.compute_likelihood(model.sess, test_string1))
       print(model.compute_likelihood(model.sess, test_string2))
       print(model.compute_likelihood(model.sess, test_string3))
-      #model.generate_eq(model.sess)
 
 if __name__ == '__main__':
 	tf.app.run()

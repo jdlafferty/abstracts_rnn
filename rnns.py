@@ -303,23 +303,33 @@ class RNNs:
 
     batch_size = 1
     log_likelihood=0;
-    for i in range(0,len(test_seq) -1):
+
+    X = np.reshape(np.array([test_seq[0]]), [1, -1])
+    feed_dict={self._X: X,
+              self.init_state_place: np.zeros([self.n_layers, 2, batch_size, self.n_hidden]),
+              self.pkeep_placeholder: 1.0,
+              #self._seq_len: [i+1],
+              self._seq_len: [1],
+              self.batch_size: 1}
+    state, p_y_i = sess.run([self.final_state, self.p_y_i], feed_dict=feed_dict)
+    for i in range(1,len(test_seq) -1):
         X = np.reshape(np.array([test_seq[i]]), [1, -1])
         # assuming plainrnn
         feed_dict={self._X: X,
-                  self.init_state_place: np.zeros([self.n_layers, 2, batch_size, self.n_hidden]),
+                  self.init_state_place: state,
                   self.pkeep_placeholder: 1.0,
-                  self._seq_len: [i],
+                  #self._seq_len: [i+1],
+                  self._seq_len: [1],
                   self.batch_size: 1}
         state, p_y_i = sess.run([self.final_state, self.p_y_i], feed_dict=feed_dict)
-        log_likelihood = log_likelihood + np.log(p_y_i.reshape([-1])[test_seq[i+1]])
+        #pdb.set_trace()
+        log_likelihood = log_likelihood + np.log(p_y_i.reshape([-1])[test_seq[i+1]-1])
     return(log_likelihood)
 
 
   def generate_eq(self, sess):
     print("generating eqs...")
 
-    #pdb.set_trace()
     seq_start_list = ["<sos>"]*100 # ["<sos> \\", "<sos> {", "<sos> P"]
     for seq_start in seq_start_list:
       batch_size = 1
@@ -334,6 +344,7 @@ class RNNs:
                  self._seq_len: [len(generated_seq)],
                  self.batch_size: 1}
 
+      pdb.set_trace()
       state = sess.run(self.final_state, feed_dict=feed_dict)
 
       ### generate seq ###

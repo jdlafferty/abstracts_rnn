@@ -20,13 +20,15 @@ class Reader(object):
     if not os.path.exists(self.data_path): os.mkdir(self.data_path)
     self.raw_data_root = config.raw_data_root
     self.vocab_path = config.vocab_path
+    self.load_training_data = config.load_training_data
 
     #assume vocabulary is built in advance
     train_data_path = self.data_path+'/'+'X_train.pkl'
     if os.path.exists(train_data_path):
       print("loading the vocabulary..."); sys.stdout.flush()
       self.vocab, self.vocab_size = load_pkl(self.vocab_path)
-      self._load()
+      if self.load_training_data:
+          self._load()
     else:
       print("getting and saving the train, valid and test data...")
       sys.stdout.flush()
@@ -39,16 +41,17 @@ class Reader(object):
       self.X_valid, self.Y_valid = self._obj_to_data(valid_objs, data_type='valid')
       self.X_test, self.Y_test = self._obj_to_data(test_objs, data_type='test')
 
-    self.n_train_docs = math.ceil((len(self.X_train) + 0.0))
-    self.n_valid_docs = math.ceil((len(self.X_valid) + 0.0))
-    self.n_test_docs = math.ceil((len(self.X_test) + 0.0))
-    self.idx2word = {v: k for k,v in self.vocab.items()}
-    print("vocabulary size: {}".format(self.vocab_size))
-    print("number of training documents: {}".format(self.n_train_docs))
-    print("number of validation documents: {}".format(self.n_valid_docs))
-    print("number of testing documents: {}".format(self.n_test_docs))
-    sys.stdout.flush()
+    if self.load_training_data:
+        self.n_train_docs = math.ceil((len(self.X_train) + 0.0))
+        self.n_valid_docs = math.ceil((len(self.X_valid) + 0.0))
+        self.n_test_docs = math.ceil((len(self.X_test) + 0.0))
+        print("vocabulary size: {}".format(self.vocab_size))
+        print("number of training documents: {}".format(self.n_train_docs))
+        print("number of validation documents: {}".format(self.n_valid_docs))
+        print("number of testing documents: {}".format(self.n_test_docs))
+        sys.stdout.flush()
 
+    self.idx2word = {v: k for k,v in self.vocab.items()}
   def _read_and_get_objdata(self, data_dir):
     obj = json.load(codecs.open(data_dir, "r", encoding="utf8"))
     data = []

@@ -1,6 +1,6 @@
 class Config:
 
-  def __init__(self, dataset, modelname):
+  def __init__(self, dataset, modelname, load_training_data):
     self.dataset = dataset
     self.modelname = modelname
     #  dataset="astro-ph"
@@ -27,4 +27,6 @@ class Config:
     self.print_topics=True
     self.generate_text=True
     self.cell_type = 'lstm'
+
+    self.load_training_data = load_training_data
 
